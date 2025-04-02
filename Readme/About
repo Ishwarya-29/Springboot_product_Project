@@ -1,0 +1,84 @@
+# Spring Boot with MongoDB: Step-by-Step
+
+## Description
+This project demonstrates how to integrate MongoDB with a Spring Boot application, focusing on CRUD (Create, Read, Update, Delete) operations on a `Product` entity.
+
+## Table of Contents
+- Installation
+- Usage
+- Endpoints
+- Models
+- Services
+- Video Demonstration
+- Contributing
+- Contact Information
+
+## Installation
+
+### Prerequisites
+- Java Development Kit (JDK) 17 or later
+- Maven or Gradle
+- MongoDB installed on your machine (or running via Docker)
+- Spring Boot (version 3.2+ recommended)
+- IDE (IntelliJ IDEA, Eclipse, etc.)
+
+### Steps
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/yourusername/your-repo-name.git
+   cd your-repo-name
+Install dependencies:
+
+mvn install
+Start MongoDB:
+
+Using Docker:
+docker run --name mongodb -d -p 27017:27017 mongo
+Or install MongoDB locally following the official instructions.
+Run the application:
+
+mvn spring-boot:run
+Usage
+To interact with the API, you can use tools like Postman or cURL.
+
+Endpoints
+GET /products/getAllProducts: Retrieves all products.
+GET /products/{id}: Retrieves a product by ID.
+PUT /products/updateProduct/{id}: Updates a product by ID.
+DELETE /products/deleteProduct/{id}: Deletes a product by ID.
+POST /products/addProduct: Adds a new product.
+
+
+------------------------------------------------------------------------------------
+Models
+Product
+package com.example.mongodb.model;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "products")
+public class Product {
+    @Id
+    private String id;
+    private String name;
+    private String description;
+    private double price;
+
+    // Getters and setters
+}
+Services
+ProductService
+Handles the business logic for managing products.
+---------------------------------------------------------------------------------------------
+Video Demonstration
+Watch the demo video
+
+Contributing
+Fork the repository.
+Create a new branch (git checkout -b feature-branch).
+Commit your changes (git commit -m 'Add some feature').
+Push to the branch (git push origin feature-branch).
+Open a Pull Request.
+Contact Information
+For questions or support, please contact your-ishwarya292001@gmail.com
