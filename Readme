@@ -10,7 +10,7 @@ The service layer contains the business logic for the application. It includes t
 
 - `createAccount(Account account)`: Creates a new account.
 - `getAccountById(Long id)`: Retrieves an account by its ID.
-- `getAllAccount()`: Retrieves all accounts.
+- `getAllAccount()`: Retrieves all account.
 - `deleteById(Long id)`: Deletes an account by its ID.
 - `updateAccountDetails(Long id, Account updateRequest)`: Updates the account holder's name.
 - `deposit(Long id, double amount)`: Deposits an amount into the account.
@@ -60,13 +60,13 @@ Run the application:
 
 
 API Endpoints
-POST /accounts: Create a new account.
-GET /accounts/{id}: Retrieve an account by its ID.
-GET /accounts: Retrieve all accounts.
-PUT /accounts/{id}: Update account details.
-DELETE /accounts/{id}: Delete an account by its ID.
-POST /accounts/{id}/deposit: Deposit an amount into the account.
-POST /accounts/{id}/withdraw: Withdraw an amount from the account.
+POST /account/add: Create a new account.
+GET /account/getById/{id}: Retrieve an account by its ID.
+GET /account/getAllDetails: Retrieve all account.
+PUT /account/updateDetails/{id}: Update account details.
+DELETE /account/deleteAccount/{id}: Delete an account by its ID.
+POST /account/deposit/{id}: Deposit an amount into the account.
+POST /account/withdraw/{id}: Withdraw an amount from the account.
 
 
 
