@@ -1,0 +1,68 @@
+# Banking Application
+
+This is a simple banking application built with Spring Boot. It provides functionalities to create, update, delete, deposit, and withdraw from accounts.
+
+## Project Structure
+
+### Service Layer
+
+The service layer contains the business logic for the application. It includes the following methods:
+
+- `createAccount(Account account)`: Creates a new account.
+- `getAccountById(Long id)`: Retrieves an account by its ID.
+- `getAllAccount()`: Retrieves all accounts.
+- `deleteById(Long id)`: Deletes an account by its ID.
+- `updateAccountDetails(Long id, Account updateRequest)`: Updates the account holder's name.
+- `deposit(Long id, double amount)`: Deposits an amount into the account.
+- `withdraw(Long id, Double amount)`: Withdraws an amount from the account.
+
+### Exception Handling
+
+The application includes custom exceptions to handle specific error scenarios:
+
+- `ResourceNotFoundException`: Thrown when an account is not found.
+- `InsufficientBalanceException`: Thrown when there is insufficient balance for a withdrawal.
+
+### Entity
+
+The `Account` entity represents the account details. It includes a custom ID generator to generate a 12-digit account number.
+
+```java
+@Entity
+@NoArgsConstructor
+public class Account {
+
+    @Id
+    @GeneratedValue(generator = "custom-id")
+    @GenericGenerator(name = "custom-id", strategy = "com.bankingapp.bankingapp.util.CustomIdGenerator")
+    private Long id;
+    
+    private String acHolderName;
+    private double balance;
+
+    // Getters and Setters
+}
+
+
+
+Prerequisites
+Java 11 or higher
+Maven 3.6.3 or higher
+Spring Boot 2.5.4 or higher
+Running the Application
+Clone the repository:
+
+Navigate to the project directory:
+
+Build the project:
+
+Run the application:
+
+API Endpoints
+POST /accounts: Create a new account.
+GET /accounts/{id}: Retrieve an account by its ID.
+GET /accounts: Retrieve all accounts.
+PUT /accounts/{id}: Update account details.
+DELETE /accounts/{id}: Delete an account by its ID.
+POST /accounts/{id}/deposit: Deposit an amount into the account.
+POST /accounts/{id}/withdraw: Withdraw an amount from the account.
