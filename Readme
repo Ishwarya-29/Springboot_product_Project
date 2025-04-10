@@ -42,9 +42,6 @@ public class Account {
 
     // Getters and Setters
 }
-
-
-
 Prerequisites
 Java 11 or higher
 Maven 3.6.3 or higher
@@ -52,11 +49,15 @@ Spring Boot 2.5.4 or higher
 Running the Application
 Clone the repository:
 
+
 Navigate to the project directory:
+
 
 Build the project:
 
+
 Run the application:
+
 
 API Endpoints
 POST /accounts: Create a new account.
@@ -66,3 +67,24 @@ PUT /accounts/{id}: Update account details.
 DELETE /accounts/{id}: Delete an account by its ID.
 POST /accounts/{id}/deposit: Deposit an amount into the account.
 POST /accounts/{id}/withdraw: Withdraw an amount from the account.
+
+
+
+
+Payload Examples
+Create an Account
+{
+    "acHolderName": "vijayakumar",
+    "balance": 0
+}
+
+Deposit and Withdraw Money
+{
+    "amount": 200.00
+}
+
+
+
+
+License
+This project is licensed under the MIT License - see the LICENSE file for details.
