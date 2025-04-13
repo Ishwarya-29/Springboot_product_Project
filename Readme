@@ -1,0 +1,115 @@
+# Library Management System
+
+This is a library management system built with Spring Boot. It allows users to manage books and user information, including borrowing and returning books. The system includes custom error handling and ID generation for books and users.
+
+## Features
+
+- Add, update, and delete books
+- Add, update, and delete users
+- Borrow and return books
+- Custom error handling
+- ID generation for books and users
+
+## Endpoints
+
+### Book Controller
+
+- **Add a New Book**
+  - **Method**: POST
+  - **URL**: `http://localhost:8080/book/addBook`
+  - **Body**:
+    ```json
+    {
+      "title": "Effective Java",
+      "author": "Joshua Bloch",
+      "borrowed": false,
+      "subject": "Tamil",
+      "borrowedBy": null
+    }
+    ```
+
+- **Get All Books**
+  - **Method**: GET
+  - **URL**: `http://localhost:8080/book/getAllBooks`
+
+- **Get a Book by ID**
+  - **Method**: GET
+  - **URL**: `http://localhost:8080/book/getById/{id}`
+  - **Path Variable**: Replace `{id}` with the actual book ID.
+
+- **Delete a Book by ID**
+  - **Method**: DELETE
+  - **URL**: `http://localhost:8080/book/deleteBook/{id}`
+  - **Path Variable**: Replace `{id}` with the actual book ID.
+
+- **Borrow a Book**
+  - **Method**: POST
+  - **URL**: `http://localhost:8080/book/{userId}/borrow/{bookId}`
+  - **Path Variables**: Replace `{userId}` with the actual user ID and `{bookId}` with the actual book ID.
+
+- **Return a Book**
+  - **Method**: POST
+  - **URL**: `http://localhost:8080/book/return/{bookId}`
+  - **Path Variable**: Replace `{bookId}` with the actual book ID.
+
+### User Controller
+
+- **Get All Users**
+  - **Method**: GET
+  - **URL**: `http://localhost:8080/user/getAllUsers`
+
+- **Add a New User**
+  - **Method**: POST
+  - **URL**: `http://localhost:8080/user/addUser`
+  - **Body**:
+    ```json
+    {
+      "name": "Ishwarya",
+      "phoneNumber": "6790438980"
+    }
+    ```
+
+- **Update a User's Name**
+  - **Method**: PUT
+  - **URL**: `http://localhost:8080/user/updateUserName/{id}`
+  - **Path Variable**: Replace `{id}` with the actual user ID.
+  - **Body**:
+    ```json
+    {
+      "name": "Ishwarya",
+      "phoneNumber": "6790438980"
+    }
+    ```
+
+## Custom Error Handling
+
+The system includes five custom error handlers:
+
+1. **InvalidMobileNumber**: Thrown when a user's phone number is not exactly 10 digits long.
+2. **ResourceNotFound**: Thrown when a requested resource (e.g., user or book) is not found.
+3. **UserExist**: Thrown when a user with the same phone number already exists.
+4. **BookNotFound**: Thrown when a requested book is not found.
+5. **BookAlreadyBorrowed**: Thrown when a book is already borrowed by another user.
+
+## ID Generators
+
+The system includes two ID generators:
+
+1. **Book ID Generator**: Generates a unique book ID consisting of a 3-letter string followed by a 4-digit number (e.g., `ABC1234`).
+2. **User ID Generator**: Generates a unique user ID consisting of a 5-digit number (e.g., `12345`).
+
+## How to Run
+
+1. Clone the repository.
+2. Navigate to the project directory.
+3. Run the application using your preferred IDE or command line.
+4. Use Postman or any other API testing tool to interact with the endpoints.
+
+## Dependencies
+
+- Spring Boot
+- Spring Data JPA
+- H2 Database (or any other preferred database)
+- Lombok (optional)
+
+
