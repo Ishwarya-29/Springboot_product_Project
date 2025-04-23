@@ -21,9 +21,6 @@ This is a simple Spring Boot application with basic authentication.
     ```
 
 ### Configuration
-
-Update the `application.properties` file with your desired username and password for basic authentication:
-
-```properties
-spring.security.user.name=admin
-spring.security.user.password=admin@123
+In security config file mention the username and password , whatever you want to give and
+here in this application auth is required for http://localhost:8080/student not for 
+http://localhost:8080/student as we mentioned in security config file.
