@@ -1,0 +1,29 @@
+# Basic Auth Spring Boot Application
+
+This is a simple Spring Boot application with basic authentication.
+
+## Getting Started
+
+### Prerequisites
+
+- Java 11
+- Maven
+
+### Installation
+
+1. Clone the repository:
+    ```sh
+    git clone https://github.com/your-repo/basicauth.git
+    ```
+2. Navigate to the project directory:
+    ```sh
+    cd basicauth
+    ```
+
+### Configuration
+
+Update the `application.properties` file with your desired username and password for basic authentication:
+
+```properties
+spring.security.user.name=admin
+spring.security.user.password=admin@123
