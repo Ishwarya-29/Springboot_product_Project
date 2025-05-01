@@ -1,0 +1,72 @@
+# Banking Application
+
+This is a simple banking application built with Spring Boot. It provides functionalities to create, update, delete, deposit, and withdraw from accounts.
+
+## Overview
+
+This project demonstrates the use of Spring Security for authentication and authorization in a Spring Boot application. It includes role-based access control, password encryption using BCrypt, and stateless session management.
+
+## Technologies Used
+- Spring Boot
+- Spring Security
+- BCrypt
+
+## Configuration Details
+
+### 1. Security Configuration (`SecurityConfig` class)
+The `SecurityConfig` class is where you configure the security settings for your application.
+
+#### Security Filter Chain
+- **CSRF Protection**: Disabled using `httpSecurity.csrf(customizer -> customizer.disable())` to simplify API interactions.
+- **Authorization Rules**: Defined using `authorizeHttpRequests` to specify which roles can access certain URL patterns:
+  - `/admin/**` requires the `ADMIN` role.
+  - `/account/**` requires the `ACCOUNT` or `ADMIN` roles.
+  - `/customer/**` requires the `CUSTOMER`, `ACCOUNT`, `ADMIN`, or `USER` roles.
+  - All other requests require authentication.
+- **HTTP Basic Authentication**: Enabled using `httpSecurity.httpBasic(Customizer.withDefaults())` for simplicity.
+- **Session Management**: Configured to be stateless using `httpSecurity.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))` to ensure each request is independently authenticated.
+
+### 2. Authentication Provider
+The `AuthenticationProvider` is responsible for verifying the provided credentials.
+
+#### DaoAuthenticationProvider
+- **Password Encoder**: Uses `BCryptPasswordEncoder` to encrypt passwords.
+- **User Details Service**: Uses a custom `UserDetailsService` to load user-specific data from the database.
+
+### 3. User Details Service (`MyUserDetailService` class)
+The `MyUserDetailService` class implements `UserDetailsService` to load user-specific data from the database.
+
+- **Load User by Username**: Retrieves user information based on the username. If the user is not found, it throws a `UsernameNotFoundException`.
+
+### 4. User Principal (`UserPrincipal` class)
+The `UserPrincipal` class implements `UserDetails` and represents the authenticated user.
+
+- **Purpose**: Encapsulates the user details and authorities (roles) required by Spring Security.
+
+### 5. User Service (`UserService` class)
+The `UserService` class handles user registration and password encryption.
+
+- **Password Encryption**: Uses `BCryptPasswordEncoder` to encrypt passwords before saving them to the database.
+- **Add User**: Encodes the user's password and saves the user to the database.
+
+## Flow of Authentication and Authorization
+1. **User Registration**: When a new user registers, the `UserService` encrypts the password using BCrypt and saves the user to the database.
+2. **User Login**: When a user attempts to log in, Spring Security intercepts the request.
+3. **Authentication**: The `DaoAuthenticationProvider` uses the `MyUserDetailService` to load the user details from the database and verifies the password using BCrypt.
+4. **Authorization**: Based on the user's roles, Spring Security grants or denies access to specific URL patterns as defined in the `SecurityConfig` class.
+
+## Running the Application
+1. Clone the repository.
+2. Configure the database settings in `application.properties`.
+3. Run the application using your IDE or command line:
+    ```bash
+    mvn spring-boot:run
+    ```
+
+## Endpoints
+- `/admin/**` - Accessible only by users with the `ADMIN` role.
+- `/account/**` - Accessible by users with `ACCOUNT` or `ADMIN` roles.
+- `/customer/**` - Accessible by users with `CUSTOMER`, `ACCOUNT`, `ADMIN`, or `USER` roles.
+- All other requests require authentication.
+
+
